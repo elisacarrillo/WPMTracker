@@ -13,7 +13,7 @@ import CoreData
 /// Saves a new WPM entry to Core Data.
 func saveWPMEntry(timestamp: Date, userId: String, wpm: Int, context: NSManagedObjectContext) {
     print("SAVEWPM")
-    let newEntry = WPMEntry(context: context)
+    let newEntry = Entity(context: context)
     newEntry.timestamp = timestamp
     newEntry.userId = userId
     newEntry.wpm = Int32(wpm)
@@ -27,8 +27,8 @@ func saveWPMEntry(timestamp: Date, userId: String, wpm: Int, context: NSManagedO
 }
 
 /// Fetches all WPM entries from Core Data.
-func fetchWPMEntries(context: NSManagedObjectContext) -> [WPMEntry] {
-    let fetchRequest: NSFetchRequest<WPMEntry> = WPMEntry.fetchRequest()
+func fetchWPMEntries(context: NSManagedObjectContext) -> [Entity] {
+    let fetchRequest: NSFetchRequest<Entity> = Entity.fetchRequest()
 
     do {
         return try context.fetch(fetchRequest)

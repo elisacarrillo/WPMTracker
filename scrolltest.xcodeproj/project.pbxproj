@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		4A1826982D369A5F00C6878F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A1826972D369A5E00C6878F /* Assets.xcassets */; };
 		4A18269A2D369AB800C6878F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1826992D369AB800C6878F /* AppDelegate.swift */; };
+		4A18269D2D36EACC00C6878F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A18269B2D36EACC00C6878F /* Model.xcdatamodeld */; };
 		4A73CFC12D3663B600B46FDE /* HIDKeyboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A73CFC02D3663B600B46FDE /* HIDKeyboardMonitor.swift */; };
 		4A73CFC52D366F2300B46FDE /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A73CFC42D366F2300B46FDE /* CoreDataHelpers.swift */; };
-		4A73CFC82D366F3900B46FDE /* WPMtrackerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A73CFC62D366F3900B46FDE /* WPMtrackerModel.xcdatamodeld */; };
 		4A73CFCA2D36746200B46FDE /* PreviewPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A73CFC92D36746200B46FDE /* PreviewPersistentContainer.swift */; };
 		4AA23AB02D335D90004EBAE1 /* scrolltestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA23AAF2D335D90004EBAE1 /* scrolltestApp.swift */; };
 		4AA23AB22D335D90004EBAE1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA23AB12D335D90004EBAE1 /* ContentView.swift */; };
@@ -41,9 +41,9 @@
 /* Begin PBXFileReference section */
 		4A1826972D369A5E00C6878F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Downloads/App Icon Generator/Assets.xcassets"; sourceTree = "<group>"; };
 		4A1826992D369AB800C6878F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4A18269C2D36EACC00C6878F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4A73CFC02D3663B600B46FDE /* HIDKeyboardMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIDKeyboardMonitor.swift; sourceTree = "<group>"; };
 		4A73CFC42D366F2300B46FDE /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
-		4A73CFC72D366F3900B46FDE /* WPMtrackerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WPMtrackerModel.xcdatamodel; sourceTree = "<group>"; };
 		4A73CFC92D36746200B46FDE /* PreviewPersistentContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewPersistentContainer.swift; sourceTree = "<group>"; };
 		4AA23AAC2D335D90004EBAE1 /* scrolltest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scrolltest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AA23AAF2D335D90004EBAE1 /* scrolltestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scrolltestApp.swift; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 		4AA23AA32D335D90004EBAE1 = {
 			isa = PBXGroup;
 			children = (
-				4A73CFC62D366F3900B46FDE /* WPMtrackerModel.xcdatamodeld */,
+				4A18269B2D36EACC00C6878F /* Model.xcdatamodeld */,
 				4AA23AAE2D335D90004EBAE1 /* scrolltest */,
 				4AA23AC02D335D92004EBAE1 /* scrolltestTests */,
 				4AA23ACA2D335D92004EBAE1 /* scrolltestUITests */,
@@ -277,10 +277,10 @@
 				4AA23AB22D335D90004EBAE1 /* ContentView.swift in Sources */,
 				4A73CFC12D3663B600B46FDE /* HIDKeyboardMonitor.swift in Sources */,
 				4A73CFCA2D36746200B46FDE /* PreviewPersistentContainer.swift in Sources */,
+				4A18269D2D36EACC00C6878F /* Model.xcdatamodeld in Sources */,
 				4A73CFC52D366F2300B46FDE /* CoreDataHelpers.swift in Sources */,
 				4A18269A2D369AB800C6878F /* AppDelegate.swift in Sources */,
 				4AA23AB02D335D90004EBAE1 /* scrolltestApp.swift in Sources */,
-				4A73CFC82D366F3900B46FDE /* WPMtrackerModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,14 +605,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		4A73CFC62D366F3900B46FDE /* WPMtrackerModel.xcdatamodeld */ = {
+		4A18269B2D36EACC00C6878F /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				4A73CFC72D366F3900B46FDE /* WPMtrackerModel.xcdatamodel */,
+				4A18269C2D36EACC00C6878F /* Model.xcdatamodel */,
 			);
-			currentVersion = 4A73CFC72D366F3900B46FDE /* WPMtrackerModel.xcdatamodel */;
-			name = WPMtrackerModel.xcdatamodeld;
-			path = /Users/queenellie/Documents/wpm/scrolltest/scrolltest/WPMtrackerModel.xcdatamodeld;
+			currentVersion = 4A18269C2D36EACC00C6878F /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = /Users/queenellie/Documents/wpm/scrolltest/wpmtrack/Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

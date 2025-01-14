@@ -36,19 +36,19 @@ struct ContentView: View {
     @State private var selectedTimeFrame: TimeFrame = .all
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \WPMEntry.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Entity.timestamp, ascending: true)],
         animation: .default
-    ) private var wpmEntries: FetchedResults<WPMEntry>
+    ) private var wpmEntries: FetchedResults<Entity>
     // Calculate the maximum WPM
-    func calculateMaxWPM(from entries: FetchedResults<WPMEntry>) -> Int {
+    func calculateMaxWPM(from entries: FetchedResults<Entity>) -> Int {
         return entries.map { Int($0.wpm) }.max() ?? 0
     }
 
     // Calculate the minimum WPM
-    func calculateMinWPM(from entries: FetchedResults<WPMEntry>) -> Int {
+    func calculateMinWPM(from entries: FetchedResults<Entity>) -> Int {
         return entries.map { Int($0.wpm) }.min() ?? 0
     }
-    func filteredEntries(for timeFrame: TimeFrame) -> [WPMEntry] {
+    func filteredEntries(for timeFrame: TimeFrame) -> [Entity] {
         
 
         let now = Date()
@@ -80,21 +80,21 @@ struct ContentView: View {
 
 
     // Calculate the average WPM
-    func calculateMaxWPM(from entries: [WPMEntry]) -> Int {
+    func calculateMaxWPM(from entries: [Entity]) -> Int {
         return entries.map { Int($0.wpm) }.max() ?? 0
     }
 
-    func calculateMinWPM(from entries: [WPMEntry]) -> Int {
+    func calculateMinWPM(from entries: [Entity]) -> Int {
         return entries.map { Int($0.wpm) }.min() ?? 0
     }
 
-    func calculateAvgWPM(from entries: [WPMEntry]) -> Double {
+    func calculateAvgWPM(from entries: [Entity]) -> Double {
         let wpms = entries.map { Int($0.wpm) }
         guard !wpms.isEmpty else { return 0.0 }
         return Double(wpms.reduce(0, +)) / Double(wpms.count)
     }
 
-    func calculateMedianWPM(from entries: [WPMEntry]) -> Double {
+    func calculateMedianWPM(from entries: [Entity]) -> Double {
         let wpms = entries.map { Int($0.wpm) }.sorted()
         guard !wpms.isEmpty else { return 0.0 }
         
@@ -106,7 +106,7 @@ struct ContentView: View {
         }
     }
 
-    func calculateStdDevWPM(from entries: [WPMEntry]) -> Double {
+    func calculateStdDevWPM(from entries: [Entity]) -> Double {
         let wpms = entries.map { Int($0.wpm) }
         guard !wpms.isEmpty else { return 0.0 }
         
@@ -321,7 +321,7 @@ struct WPMZone: Identifiable {
     let count: Int
     var id: String { zone }
 }
-func calculateWPMFrequencyDistribution(from entries: [WPMEntry]) -> [WPMZone] {
+func calculateWPMFrequencyDistribution(from entries: [Entity]) -> [WPMZone] {
     // Define WPM zones in a fixed order
     let zones: [(name: String, range: ClosedRange<Int>)] = [
         ("1-10 WPM zone", 1...10),
