@@ -10,7 +10,7 @@ import CoreData
 
 class PreviewPersistentContainer {
     static let shared: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "WPMtrackerModel")
+        let container = NSPersistentContainer(name: "Model  ")
         let description = container.persistentStoreDescriptions.first
         description?.type = NSSQLiteStoreType
         
