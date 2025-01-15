@@ -17,7 +17,7 @@ class HIDKeyboardMonitor : ObservableObject {
         25: "V", 26: "W", 27: "X", 28: "Y", 29: "Z",
         30: "1", 31: "2", 32: "3", 33: "4", 34: "5", 35: "6", 36: "7",
         37: "8", 38: "9", 39: "0",
-        40: "\n", 41: "ESC", 42: "BS", 43: "TB", 44: " ",
+        40: "\n", 41: "e", 42: "b", 43: "t", 44: " ",
         45: "-", 46: "=", 47: "[", 48: "]"
     ]
     private var mainTimer: Timer?
@@ -99,9 +99,115 @@ class HIDKeyboardMonitor : ObservableObject {
         
     }
     
+//    private func setupHIDManager() {
+//        // Create the HID Manager
+//        let manager = IOHIDManagerCreate(kCFAllocatorDefault, IOOptionBits(kIOHIDOptionsTypeNone))
+//        hidManager = manager // Assign to the class property
+//        print("IOHIDManager created successfully.")
+//        
+//        // Set the device matching criteria for keyboards
+//        let matchingDict: [String: Any] = [
+//            kIOHIDDeviceUsagePageKey as String: kHIDPage_GenericDesktop,
+//            kIOHIDDeviceUsageKey as String: kHIDUsage_GD_Keyboard
+//        ]
+//        IOHIDManagerSetDeviceMatching(manager, matchingDict as CFDictionary)
+//        
+//        // Register the static callback
+//        IOHIDManagerRegisterInputValueCallback(manager, Self.inputCallback, Unmanaged.passUnretained(self).toOpaque())
+//        
+//        // Schedule the manager with the current run loop
+//        IOHIDManagerScheduleWithRunLoop(manager, CFRunLoopGetCurrent(), CFRunLoopMode.defaultMode.rawValue)
+//        
+//        // Open the HID Manager
+//        let result = IOHIDManagerOpen(manager, IOOptionBits(kIOHIDOptionsTypeNone))
+//        if result == kIOReturnSuccess {
+//            print("HID Manager successfully opened.")
+//        } else {
+//            print("Failed to open HID Manager: \(result)")
+//            self.elapsedTimeString="Error with permissions :("
+//        }
+//    }
+//    
+//    import Foundation
+//    import IOKit.hid
+
     private func setupHIDManager() {
+        // Check for Input Monitoring permission
+        let accessStatus = IOHIDCheckAccess(kIOHIDRequestTypeListenEvent)
+
+        switch accessStatus {
+        case IOHIDAccessType(rawValue: 0): // kIOHIDAccessTypeGranted
+            print("Input Monitoring access granted.")
+        case IOHIDAccessType(rawValue: 1): // kIOHIDAccessTypeDenied
+            print("Input Monitoring access denied.")
+            self.elapsedTimeString = "Error: Input Monitoring denied."
+
+            // Inform the user with a dialog and guide them to enable the permission manually
+            DispatchQueue.main.async {
+                let alert = NSAlert()
+                alert.messageText = "Input Monitoring Access Denied"
+                alert.informativeText = """
+                Input Monitoring is required for this app to function properly.
+                Please enable it in System Preferences > Security & Privacy > Input Monitoring.
+                """
+                alert.alertStyle = .critical
+                alert.addButton(withTitle: "Open System Preferences")
+                alert.addButton(withTitle: "Cancel")
+
+                let response = alert.runModal()
+                if response == .alertFirstButtonReturn {
+                    // Open System Preferences to the Input Monitoring section
+                    if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_ListenEvent") {
+                        NSWorkspace.shared.open(url)
+                    }
+                }
+
+            }
+            return
+
+        case IOHIDAccessType(rawValue: 2): // kIOHIDAccessTypeUnknown
+            print("Input Monitoring status unknown. Requesting access...")
+            if !IOHIDRequestAccess(kIOHIDRequestTypeListenEvent) {
+                print("Input Monitoring access request denied.")
+                self.elapsedTimeString = "Error: Input Monitoring not granted."
+                return
+            }
+            print("Input Monitoring access granted after request.")
+        default:
+            print("Unexpected Input Monitoring access status.")
+            self.elapsedTimeString = "Error: Unexpected access status."
+            return
+        }
+//        let accessStatus = IOHIDCheckAccess(kIOHIDRequestTypeListenEvent)
+//
+//        if accessStatus == IOHIDAccessType(rawValue: 1) { // kIOHIDAccessTypeDenied
+//            print("Input Monitoring access was denied.")
+//            DispatchQueue.main.async {
+//                let alert = NSAlert()
+//                alert.messageText = "Input Monitoring Required"
+//                alert.informativeText = "Please enable Input Monitoring for this app in System Preferences > Privacy & Security > Input Monitoring."
+//                alert.alertStyle = .warning
+//                alert.addButton(withTitle: "Open System Preferences")
+//                alert.addButton(withTitle: "Cancel")
+//                let response = alert.runModal()
+//                
+//                if response == .alertFirstButtonReturn {
+//                    if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security") {
+//                        NSWorkspace.shared.open(url)
+//                    }
+//                }
+//            }
+//            return
+//        }
+
+
         // Create the HID Manager
         let manager = IOHIDManagerCreate(kCFAllocatorDefault, IOOptionBits(kIOHIDOptionsTypeNone))
+        if CFGetTypeID(manager) != IOHIDManagerGetTypeID() {
+            print("Failed to create a valid IOHIDManager.")
+            self.elapsedTimeString = "Error: Invalid IOHIDManager."
+            return
+        }
         hidManager = manager // Assign to the class property
         print("IOHIDManager created successfully.")
         
@@ -111,21 +217,23 @@ class HIDKeyboardMonitor : ObservableObject {
             kIOHIDDeviceUsageKey as String: kHIDUsage_GD_Keyboard
         ]
         IOHIDManagerSetDeviceMatching(manager, matchingDict as CFDictionary)
-        
+
         // Register the static callback
         IOHIDManagerRegisterInputValueCallback(manager, Self.inputCallback, Unmanaged.passUnretained(self).toOpaque())
-        
+
         // Schedule the manager with the current run loop
         IOHIDManagerScheduleWithRunLoop(manager, CFRunLoopGetCurrent(), CFRunLoopMode.defaultMode.rawValue)
-        
+
         // Open the HID Manager
         let result = IOHIDManagerOpen(manager, IOOptionBits(kIOHIDOptionsTypeNone))
         if result == kIOReturnSuccess {
             print("HID Manager successfully opened.")
         } else {
             print("Failed to open HID Manager: \(result)")
+            self.elapsedTimeString = "Error with permissions or HID Manager initialization."
         }
     }
+
     
     
     

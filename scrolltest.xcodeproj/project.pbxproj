@@ -45,7 +45,8 @@
 		4A73CFC02D3663B600B46FDE /* HIDKeyboardMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIDKeyboardMonitor.swift; sourceTree = "<group>"; };
 		4A73CFC42D366F2300B46FDE /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		4A73CFC92D36746200B46FDE /* PreviewPersistentContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewPersistentContainer.swift; sourceTree = "<group>"; };
-		4AA23AAC2D335D90004EBAE1 /* scrolltest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scrolltest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A8813EE2D3700FB00DADDF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4AA23AAC2D335D90004EBAE1 /* WPMTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WPMTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AA23AAF2D335D90004EBAE1 /* scrolltestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scrolltestApp.swift; sourceTree = "<group>"; };
 		4AA23AB12D335D90004EBAE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4AA23AB62D335D92004EBAE1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -96,7 +97,7 @@
 		4AA23AAD2D335D90004EBAE1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4AA23AAC2D335D90004EBAE1 /* scrolltest.app */,
+				4AA23AAC2D335D90004EBAE1 /* WPMTracker.app */,
 				4AA23ABD2D335D92004EBAE1 /* scrolltestTests.xctest */,
 				4AA23AC72D335D92004EBAE1 /* scrolltestUITests.xctest */,
 			);
@@ -106,6 +107,7 @@
 		4AA23AAE2D335D90004EBAE1 /* scrolltest */ = {
 			isa = PBXGroup;
 			children = (
+				4A8813EE2D3700FB00DADDF1 /* Info.plist */,
 				4A73CFC92D36746200B46FDE /* PreviewPersistentContainer.swift */,
 				4A73CFC02D3663B600B46FDE /* HIDKeyboardMonitor.swift */,
 				4AA23AAF2D335D90004EBAE1 /* scrolltestApp.swift */,
@@ -161,7 +163,7 @@
 			);
 			name = scrolltest;
 			productName = scrolltest;
-			productReference = 4AA23AAC2D335D90004EBAE1 /* scrolltest.app */;
+			productReference = 4AA23AAC2D335D90004EBAE1 /* WPMTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4AA23ABC2D335D92004EBAE1 /* scrolltestTests */ = {
@@ -450,6 +452,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = scrolltest/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WPMTracker;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -457,7 +462,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = queenellie.scrolltest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WPMTracker;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -478,6 +483,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = scrolltest/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WPMTracker;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -485,7 +493,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = queenellie.scrolltest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WPMTracker;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
